@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -28,6 +29,14 @@ const Hero = () => {
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 View Services
+              </Button>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="font-semibold"
+                asChild
+              >
+                <Link to="/dashboard">Business Login</Link>
               </Button>
             </div>
           </div>

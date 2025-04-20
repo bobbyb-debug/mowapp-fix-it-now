@@ -1,95 +1,39 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-40 w-full border-b bg-background">
+      <div className="container flex h-16 items-center justify-between py-4">
         <div className="flex items-center gap-2">
-          <a href="/" className="flex items-center space-x-2">
-            <span className="font-bold text-2xl text-primary">MowApp</span>
-          </a>
+          <span className="font-bold text-xl text-primary">MowApp</span>
         </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
-          <a
-            href="#services"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
+        <nav className="flex gap-4 sm:gap-6">
+          <Link to="/" className="text-sm font-medium hover:text-primary">
+            Home
+          </Link>
+          <a href="#services" className="text-sm font-medium hover:text-primary">
             Services
           </a>
-          <a
-            href="#booking"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
+          <a href="#booking" className="text-sm font-medium hover:text-primary">
             Book Now
           </a>
-          <a
-            href="#about"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            About Us
+          <a href="#about" className="text-sm font-medium hover:text-primary">
+            About
           </a>
-          <Button variant="default">Contact Us</Button>
+          <Link to="/dashboard" className="text-sm font-medium hover:text-primary">
+            Dashboard
+          </Link>
         </nav>
-
-        {/* Mobile menu button */}
-        <button
-          className="flex md:hidden items-center justify-center rounded-md p-2 text-foreground"
-          onClick={toggleMenu}
-        >
-          <span className="sr-only">Toggle menu</span>
-          {isMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div
-        className={cn(
-          "md:hidden fixed inset-0 top-16 z-50 bg-background w-full transform transition-transform duration-300 ease-in-out",
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        <nav className="container flex flex-col gap-6 p-6">
-          <a
-            href="#services"
-            className="text-lg font-medium transition-colors hover:text-primary"
-            onClick={toggleMenu}
-          >
-            Services
-          </a>
-          <a
-            href="#booking"
-            className="text-lg font-medium transition-colors hover:text-primary"
-            onClick={toggleMenu}
-          >
-            Book Now
-          </a>
-          <a
-            href="#about"
-            className="text-lg font-medium transition-colors hover:text-primary"
-            onClick={toggleMenu}
-          >
-            About Us
-          </a>
-          <Button variant="default" className="w-full" onClick={toggleMenu}>
-            Contact Us
+        <div className="flex items-center gap-4">
+          <Button asChild>
+            <Link to="/dashboard">
+              Business Portal
+            </Link>
           </Button>
-        </nav>
+        </div>
       </div>
     </header>
   );
