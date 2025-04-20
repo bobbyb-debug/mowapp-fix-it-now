@@ -154,6 +154,13 @@ const ExpenseManagement = () => {
 
   const totalExpenses = expenses.reduce((sum, expense) => sum + expense.amount, 0);
 
+  const formatTooltipValue = (value: any) => {
+    if (typeof value === 'number') {
+      return `$${value.toFixed(2)}`;
+    }
+    return value;
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -191,7 +198,7 @@ const ExpenseManagement = () => {
                         <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+                    <Tooltip formatter={formatTooltipValue} />
                     <Legend />
                   </PieChart>
                 </ResponsiveContainer>
