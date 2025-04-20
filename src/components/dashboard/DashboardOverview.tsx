@@ -1,9 +1,9 @@
 
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { ArrowUpIcon, ArrowDownIcon } from "lucide-react";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 // Mock data for the initial UI
 const profitData = [
@@ -106,18 +106,20 @@ const DashboardOverview = () => {
         </CardHeader>
         <CardContent>
           <div className="h-80">
-            <ChartContainer config={chartConfig}>
-              <BarChart data={profitData}>
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip content={<ChartTooltipContent />} />
-                <Legend />
-                <Bar dataKey="revenue" name="Revenue" fill="var(--color-revenue)" />
-                <Bar dataKey="expenses" name="Expenses" fill="var(--color-expenses)" />
-                <Bar dataKey="profit" name="Profit" fill="var(--color-profit)" />
-              </BarChart>
-              <ChartTooltip />
-            </ChartContainer>
+            <ResponsiveContainer width="100%" height="100%">
+              <ChartContainer config={chartConfig}>
+                <BarChart data={profitData}>
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip content={<ChartTooltipContent />} />
+                  <Legend />
+                  <Bar dataKey="revenue" name="Revenue" fill="var(--color-revenue)" />
+                  <Bar dataKey="expenses" name="Expenses" fill="var(--color-expenses)" />
+                  <Bar dataKey="profit" name="Profit" fill="var(--color-profit)" />
+                </BarChart>
+                <ChartTooltip />
+              </ChartContainer>
+            </ResponsiveContainer>
           </div>
         </CardContent>
       </Card>

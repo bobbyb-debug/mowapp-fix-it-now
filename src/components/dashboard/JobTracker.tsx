@@ -103,7 +103,9 @@ const JobTracker = () => {
     ? jobs 
     : jobs.filter(job => job.status === filterStatus);
 
-  const handleAddJob = (formData: FormData) => {
+  const handleAddJob = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     const newJob = {
       id: jobs.length + 1,
       client: formData.get("client") as string,
@@ -171,7 +173,7 @@ const JobTracker = () => {
               </DialogDescription>
             </DialogHeader>
             
-            <form action={handleAddJob} className="space-y-4">
+            <form onSubmit={handleAddJob} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="client">Client Name</Label>

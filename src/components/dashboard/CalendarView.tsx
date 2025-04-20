@@ -81,7 +81,9 @@ const CalendarView = () => {
     })
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const handleAddEvent = (formData: FormData) => {
+  const handleAddEvent = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     const eventDate = formData.get("date") as string;
     const newEvent: CalendarEvent = {
       id: events.length + 1,
@@ -121,7 +123,7 @@ const CalendarView = () => {
               </DialogDescription>
             </DialogHeader>
             
-            <form action={handleAddEvent} className="space-y-4">
+            <form onSubmit={handleAddEvent} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="client">Client Name</Label>
