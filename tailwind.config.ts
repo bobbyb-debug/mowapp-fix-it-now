@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,33 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// MowApp custom colors
+				lawn: {
+					"50": "#f0fdf4",
+					"100": "#dcfce7",
+					"200": "#bbf7d0",
+					"300": "#86efac",
+					"400": "#4ade80",
+					"500": "#22c55e",
+					"600": "#16a34a",
+					"700": "#15803d",
+					"800": "#166534",
+					"900": "#14532d",
+					"950": "#052e16"
+				},
+				earth: {
+					"50": "#f9f7f5",
+					"100": "#f0ece7",
+					"200": "#e3d8ce",
+					"300": "#d0bba9",
+					"400": "#b99a82",
+					"500": "#a88265",
+					"600": "#9a7156",
+					"700": "#805e49",
+					"800": "#6a4e3f",
+					"900": "#584135",
+					"950": "#2e221c"
 				}
 			},
 			borderRadius: {
