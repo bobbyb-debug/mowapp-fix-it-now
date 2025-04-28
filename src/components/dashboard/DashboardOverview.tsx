@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
@@ -21,17 +20,17 @@ const chartConfig = {
   profit: { label: "Profit", theme: { light: "#60A5FA", dark: "#60A5FA" } },
 };
 
-const KPICard = ({ 
-  title, 
-  value, 
-  description, 
-  trend, 
-  trendValue 
-}: { 
-  title: string; 
-  value: string; 
-  description: string; 
-  trend: "up" | "down" | "neutral"; 
+const KPICard = ({
+  title,
+  value,
+  description,
+  trend,
+  trendValue
+}: {
+  title: string;
+  value: string;
+  description: string;
+  trend: "up" | "down" | "neutral";
   trendValue: string;
 }) => {
   return (
@@ -47,8 +46,12 @@ const KPICard = ({
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
         <p className="text-xs text-muted-foreground">
-          {description} {" "}
-          <span className={trend === "up" ? "text-green-500" : trend === "down" ? "text-red-500" : ""}>
+          {description}{" "}
+          <span
+            className={
+              trend === "up" ? "text-green-500" : trend === "down" ? "text-red-500" : ""
+            }
+          >
             {trendValue}
           </span>
         </p>
@@ -58,14 +61,14 @@ const KPICard = ({
 };
 
 const DashboardOverview = () => {
-  // Calculate monthly summary
   const currentMonth = profitData[profitData.length - 1];
   const totalRevenue = profitData.reduce((sum, month) => sum + month.revenue, 0);
   const totalExpenses = profitData.reduce((sum, month) => sum + month.expenses, 0);
   const totalProfit = totalRevenue - totalExpenses;
-  
+
   return (
     <div className="space-y-6">
+      {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <KPICard
           title="Monthly Revenue"
@@ -97,40 +100,37 @@ const DashboardOverview = () => {
         />
       </div>
 
-      <Card className="col-span-4">
+      {/* Chart */}
+      <Card className="mb-12">
         <CardHeader>
           <CardTitle>Financial Overview</CardTitle>
-          <CardDescription>
-            Monthly breakdown of revenue, expenses, and profit
-          </CardDescription>
+          <CardDescription>Monthly breakdown of revenue, expenses, and profit</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-80">
+          <div className="h-[400px] w-full"> {/* Explicit height and full width */}
             <ChartContainer config={chartConfig}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={profitData}>
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip content={<ChartTooltipContent />} />
-                  <Legend />
-                  <Bar dataKey="revenue" name="Revenue" fill="var(--color-revenue)" />
-                  <Bar dataKey="expenses" name="Expenses" fill="var(--color-expenses)" />
-                  <Bar dataKey="profit" name="Profit" fill="var(--color-profit)" />
-                </BarChart>
+              <ResponsiveContainer width="100%" height="100%"> {/* Ensures the chart scales with the container */}
+                  <BarChart data={profitData}>
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip content={<ChartTooltipContent />} />
+                    <Legend />
+                    <Bar dataKey="revenue" name="Revenue" fill="var(--color-revenue)" />
+                    <Bar dataKey="expenses" name="Expenses" fill="var(--color-expenses)" />
+                    <Bar dataKey="profit" name="Profit" fill="var(--color-profit)" />
+                  </BarChart>
               </ResponsiveContainer>
-              <ChartTooltip />
             </ChartContainer>
           </div>
         </CardContent>
       </Card>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      {/* Other Info */}
+      <div className="mt-20 grid gap-4 md:grid-cols-2"> {/* Increased margin-top to move this section further down */}
         <Card>
           <CardHeader>
             <CardTitle>Top Services</CardTitle>
-            <CardDescription>
-              Most profitable services this month
-            </CardDescription>
+            <CardDescription>Most profitable services this month</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -153,9 +153,7 @@ const DashboardOverview = () => {
         <Card>
           <CardHeader>
             <CardTitle>Upcoming Jobs</CardTitle>
-            <CardDescription>
-              Jobs scheduled for the next week
-            </CardDescription>
+            <CardDescription>Jobs scheduled for the next week</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">

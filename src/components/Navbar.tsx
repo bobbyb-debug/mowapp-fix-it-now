@@ -1,50 +1,34 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Navbar = () => {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between py-4">
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-xl text-primary">MowApp</span>
+    <header className="sticky top-0 z-40 w-full border-b bg-background animate-in fade-in duration-700">
+      <nav className="container flex h-16 items-center justify-between py-4 px-2">
+        <div className="text-2xl font-bold tracking-tight">
+          MowApp 🌿
         </div>
-        <nav className="hidden md:flex gap-4 sm:gap-6">
-          <Link to="/" className="text-sm font-medium hover:text-primary">
-            Home
-          </Link>
-          <Link to="/dashboard" className="text-sm font-medium hover:text-primary">
-            Dashboard
-          </Link>
-          <Link to="/clients" className="text-sm font-medium hover:text-primary">
-            Clients
-          </Link>
-          <Link to="/expenses" className="text-sm font-medium hover:text-primary">
-            Expenses
-          </Link>
-          <a href="#services" className="text-sm font-medium hover:text-primary">
-            Services
-          </a>
-          <a href="#about" className="text-sm font-medium hover:text-primary">
-            About
-          </a>
-        </nav>
         <div className="flex items-center gap-4">
-          <Button asChild className="hidden sm:flex">
-            <Link to="/dashboard">
-              Business Portal
-            </Link>
+          <Button variant="link" asChild>
+            <a href="/dashboard" className="text-sm font-medium">
+              Dashboard
+            </a>
           </Button>
-          <Button variant="ghost" size="icon" className="md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu">
-              <line x1="4" y1="12" x2="20" y2="12"></line>
-              <line x1="4" y1="6" x2="20" y2="6"></line>
-              <line x1="4" y1="18" x2="20" y2="18"></line>
-            </svg>
+          <Button variant="link" asChild>
+            <a href="/clients" className="text-sm font-medium">
+              Clients
+            </a>
           </Button>
+          <Button variant="link" asChild>
+            <a href="/expenses" className="text-sm font-medium">
+              Expenses
+            </a>
+          </Button>
+          <ThemeToggle />
         </div>
-      </div>
+      </nav>
     </header>
   );
 };
