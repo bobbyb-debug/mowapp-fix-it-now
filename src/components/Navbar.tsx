@@ -1,35 +1,36 @@
+// src/components/Navbar.tsx
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import ThemeToggle from "@/components/ThemeToggle";
+import { Link } from "react-router-dom"; // Import Link for routing
+import { useState } from "react";
+import { Button } from "@/components/ui/button"; // Assuming you have a Button component.
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogout = () => {
+    // Clear session data or cookies here
+    setIsLoggedIn(false); // Log out by changing state
+  };
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background animate-in fade-in duration-700">
-      <nav className="container flex h-16 items-center justify-between py-4 px-2">
+    <nav className="bg-background text-foreground p-4">
+      <div className="container flex justify-between items-center">
         <div className="text-2xl font-bold tracking-tight">
-          MowApp 🌿
+          <Link to="/" className="hover:text-primary transition-colors">
+            MowApp 🌿
+          </Link>
         </div>
-        <div className="flex items-center gap-4">
-          <Button variant="link" asChild>
-            <a href="/dashboard" className="text-sm font-medium">
-              Dashboard
-            </a>
-          </Button>
-          <Button variant="link" asChild>
-            <a href="/clients" className="text-sm font-medium">
-              Clients
-            </a>
-          </Button>
-          <Button variant="link" asChild>
-            <a href="/expenses" className="text-sm font-medium">
-              Expenses
-            </a>
-          </Button>
-          <ThemeToggle />
+        <div className="space-x-4">
+          {isLoggedIn ? (
+            <Button onClick={handleLogout}>Logout</Button>
+          ) : (
+            <Button onClick={() => alert("Google Login coming soon!")}>
+              Google Login
+            </Button>
+          )}
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
   );
 };
 
